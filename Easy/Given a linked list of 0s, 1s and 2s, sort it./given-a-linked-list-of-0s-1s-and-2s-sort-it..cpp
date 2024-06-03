@@ -35,45 +35,46 @@ class Solution
     //Function to sort a linked list of 0s, 1s and 2s.
     Node* segregate(Node *head) {
         
+         if(head == NULL || head->next == NULL) return head;
         // Add code here
-       Node *zero=new Node(-1);
-       Node *one=new Node(-1);
-       Node *two=new Node(-1);
-       
-       Node *zerohead=zero;
-       Node *onehead=one;
-       Node *twohead=two;
-       Node *temp=head;
-       while(temp!=nullptr){
-           if(temp->data==0){
-               zerohead->next=temp;
-               zerohead=zerohead->next;
-               
-           }
-           else if(temp->data==1){
-               onehead->next=temp;
-               onehead=onehead->next;
-               
-               
-           }
-           else{
-               twohead->next=temp;
-               twohead=twohead->next;
-           }
-           
-           temp=temp->next;
-       }
-       
-       
-       zerohead->next=one->next?one->next:two->next;
-       onehead->next=two->next;
-       twohead->next=nullptr;
-       
-       Node *newnode=zero->next;
-       delete zero;
-       delete one;
-       delete two;
-       return newnode;
+        Node* zeroHead = new Node(-1);
+        Node* oneHead = new Node(-1);
+        Node* twoHead = new Node(-1);
+        
+        Node* zero = zeroHead;
+        Node* one = oneHead;
+        Node* two = twoHead;
+        Node* temp = head;
+        
+        while(temp != NULL) {
+            if(temp->data == 0) {
+                zero->next = temp;
+                zero = temp;
+            }
+            else if(temp->data == 1) {
+                one->next = temp;
+                one = temp;
+            }
+            else {
+                two->next = temp;
+                two = temp;
+            }
+            temp = temp->next;
+        }
+        
+        
+        zero->next = (oneHead->next) ? oneHead->next : twoHead->next;
+        one->next = twoHead->next;
+        two->next = NULL;
+        
+        Node* newHead = zeroHead->next;
+        
+        delete(zeroHead);
+        delete(oneHead);
+        delete(twoHead);
+        
+        return newHead;
+        
         
     }
 };
