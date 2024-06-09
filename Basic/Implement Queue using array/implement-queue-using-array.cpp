@@ -70,23 +70,21 @@ public :
 void MyQueue :: push(int x)
 {
         // Your Code
+        arr[rear]=x;
+        rear++;
        
-          arr[rear]=x;
-          rear++;
-        
-        
-        
-        
 }
 
 //Function to pop an element from queue and return that element.
 int MyQueue :: pop()
 {
-        // Your Code 
-        if(rear==front) return -1;
-        else{
-            int t=arr[front];
-            front++;
-            return t;
-        }
+    if(front==rear) return -1;
+    else{
+        
+    
+    int x=arr[front];
+    front++;
+    return x;
+    
+    }
 }
