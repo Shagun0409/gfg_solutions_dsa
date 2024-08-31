@@ -21,57 +21,42 @@ class Solution
     public:
     void merge(int arr[], int l, int m, int r)
     {
-        
-        int temp[r-l+1];
-        int low=l;
-        int high=m+1;
-        int k=0;
-        
-        
-        while(low<=m && high<=r){
-            if(arr[low]<arr[high]){
-                temp[k]=arr[low];
-                low++;
-            }
-            else{
-                temp[k]=arr[high];
-                high++;
-            }
-            k++;
-        }
-        
-        
-        while(low<=m){
-            temp[k]=arr[low];
-            low++;
-            k++;
-        }
-        
-         while(high<=r){
-            temp[k]=arr[high];
-            high++;
-            k++;
-        }
-        
-        for(int i=l;i<=r;i++){
-            arr[i]=temp[i-l];
-        }
+         // Your code here
+         vector<int> ans;
+         int low=l;
+         int high=m+1;
+         while(low<=m  && high<=r){
+             if(arr[low]<arr[high]){
+                 ans.push_back(arr[low]);
+                 low++;
+             }
+             else{
+                 ans.push_back(arr[high]);
+                 high++;
+             }
+         }
+         while(low<=m){
+             ans.push_back(arr[low]);
+             low++;
+         }
          
+         
+         while(high<=r){
+             ans.push_back(arr[high]);
+             high++;
+         }
+         
+         for (int i = l; i <= r; i++) {
+        arr[i] = ans[i - l];
+    }
     }
     public:
     void mergeSort(int arr[], int l, int r)
-    {
-    if(l>=r) return ;
-    
-    int mid=(l+r)/2;
-    mergeSort(arr,l,mid);
-    mergeSort(arr,mid+1,r);
-    merge(arr,l,mid,r);
-    
-    
-    
-        
-        
+    {if (l >= r) return;
+        int mid=(l+r)/2;
+        mergeSort(arr,l,mid);
+        mergeSort(arr,mid+1,r);
+        merge(arr,l,mid,r);
     }
 };
 
